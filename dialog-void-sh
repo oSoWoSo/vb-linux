@@ -1,0 +1,207 @@
+#!/bin/bash
+
+dialog --checklist "01 - Basic:" 0 0 0 \
+update "update system" on \
+recommended "recommended packages" on \
+development "development tools" off 2> basic.tmp
+
+dialog --checklist "02 - Nonfree and repositories:" 0 0 0 \
+repom "void-repo-multilib" off \
+repon "void-repo-nonfree" off \
+repomn "void-repo-multilib-nonfree" off \
+nvidia "Nvidia proprietary drivers" off 2> repo.tmp
+
+dialog --checklist "03 - Choose default shell:" 0 0 0 \
+bash "GNU Bourne Again Shell" off \
+fish "User friendly shell intended mostly for interactive use" off \
+zsh "Z shell" off 2> shell.tmp
+
+dialog --checklist "04 - Choose user interface:" 0 0 0 \
+de "Desktop environment" off \
+wm "Window manager" off \
+xorg "Xorg" off \
+wayland "Wayland" off 2> ui.tmp
+
+dialog --checklist "05 - Choose desktop environment:" 0 0 0 \
+		1 "budgie" off \
+		2 "cinnamon" off \
+		3 "enlightenment" off \
+		4 "gnome" off \
+		5 "kde" off \
+		6 "lumina" off \
+		7 "lxde" off \
+		8 "lxqt" off \
+		9 "mate" off \
+		10 "xfce" off 2> de.tmp
+
+dialog --checklist "06 - Choose windows manager:" 0 0 0 \
+		1 "awesome" off \
+		2 "bspwm" off \
+		3 "dwm" off \
+		4 "fluxbox" off \
+		5 "fvwm3" off \
+		6 "herbsluftwm" off \
+		7 "i3-gaps" off \
+		8 "icewm" off \
+		9 "jwm" off \
+		10 "openbox" off \
+		11 "qtile" off \
+		12 "sway" off \
+		13 "wayfire" off 2> wm.tmp
+
+dialog --checklist "07 - Choose display manager:" 0 0 0 \
+		1 "cdm - Console Display Manager" off \
+		2 "emptty - Dead simple Display Manager running in CLI as TTY login" off \
+		3 "gdm - GNOME Display Manager" off \
+		4 "lightdm - Light Display Manager" off \
+		5 "lxdm - GUI login manager for LXDE" off \
+		6 "nodm - Minimalistic display manager for automatic logins" off \
+		7 "sddm - QML based X11 display manager" off \
+		8 "slim - Desktop-independent graphical login manager for X11" off \
+		9 "stdm - Simple terminal display manager" off \
+		10 "xdm - X Display Manager" off 2> dm.tmp
+
+dialog --checklist "08 - Choose terminal:" 0 0 0 \
+		1 "alacritty" off \
+		2 "aminal" off \
+		3 "aterm" off \
+		4 "cool-retro-term" off \
+		5 "fbterm" off \
+		6 "foot (wayland)" off \
+		7 "gnome-terminal" off \
+		8 "kitty" off \
+		9 "konsole" off \
+		10 "lilyterm" off \
+		11 "lxterminal" off \
+		12 "mate-terminal" off \
+		13 "qterminal" off \
+		14 "roxterm" off \
+		15 "rxvt-unicode" off \
+		16 "sakura" off \
+		17 "terminal" off \
+		18 "terminator" off \
+		19 "terminology" off \
+		20 "tilix" off \
+		21 "xfce-terminal" off \
+		22 "xiate" off \
+		23 "xterm" off \
+		24 "yakuake" off 2> terminal.tmp
+
+dialog --checklist "09 - Choose editor:" 0 0 0 \
+		1 "emacs" off \
+		2 "micro" off \
+		3 "nano" off \
+		4 "vim" off 2> editor.tmp
+
+dialog --checklist "10 - Choose graphical editor:" 0 0 0 \
+		1 "atom" off \
+		2 "bluefish" off \
+		3 "code-oss" off \
+		4 "emacs" off \
+		5 "geany" off \
+		6 "geditor" off \
+		7 "gvim" off \
+		8 "kakoune" off \
+		9 "kate" off \
+		10 "leafpad" off \
+		11 "mousepad" off \
+		12 "neovim" off \
+		13 "notepadqq" off \
+		14 "sublime" off \
+		15 "vile" off \
+		16 "zile" off 2> geditor.tmp
+
+dialog --checklist "11 - Choose browser:" 0 0 0 \
+		1 "badwolf" off \
+		2 "chromium" off \
+		3 "falkon" off \
+		4 "firefox" off \
+		5 "firefox-esr" off \
+		6 "qutebrowser" off 2> browser.tmp
+
+dialog --checklist "12 - Choose media player:" 0 0 0 \
+		1 "audacious" off \
+		2 "deadbeef" off \
+		3 "moc" off \
+		4 "mplayer" off \
+		5 "mpv" off \
+		6 "parole" off \
+		7 "qmmp" off \
+		8 "rage-player" off \
+		9 "strawberry" off \
+		10 "totem" off \
+		11 "vlc" off \
+		12 "xnoise" off 2> media.tmp
+
+dialog --checklist "13 - Choose backup:" 0 0 0 \
+		1 "borg" off \
+		2 "dejadup" off \
+		3 "timeshift" off 2> backup.tmp
+
+dialog --checklist "14 - Choose networking:" 0 0 0 \
+		1 "connman" off \
+		2 "iwcd" off \
+		3 "networkmanager" off 2> net.tmp
+
+dialog --checklist "15 - Choose virtualization:" 0 0 0 \
+		1 "qemu" off \
+		2 "virt-manager" off \
+		3 "virtualbox" off \
+		4 "PCI passthrough" off 2> virt.tmp
+
+echo -n basic=
+cat basic.tmp
+echo
+echo -n repo=
+cat repo.tmp
+echo
+echo -n shell=
+cat shell.tmp
+echo
+echo -n ui=
+cat ui.tmp
+echo
+echo -n de=
+cat de.tmp
+echo
+echo -n wm=
+cat wm.tmp
+echo
+echo -n dm=
+cat dm.tmp
+echo
+echo -n terminal=
+cat terminal.tmp
+echo
+echo -n editor=
+cat editor.tmp
+echo
+echo -n geditor=
+cat geditor.tmp
+echo
+echo -n browser=
+cat browser.tmp
+echo
+echo -n media=
+cat media.tmp
+echo
+echo -n backup=
+cat backup.tmp
+echo
+echo -n net=
+cat net.tmp
+echo
+echo -n virt=
+cat virt.tmp
+echo
+
+if repo=1; then
+	echo "Installing repo..."
+elif repo=2; then
+	echo "222"
+elif repo=3; then
+	echo "333"
+elif repo=4; then
+	echo "444"
+fi
+
