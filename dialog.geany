@@ -27,15 +27,14 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=4
+current_page=3
 FILE_NAME_0=28976;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fdialog-void-sh;0;4
 FILE_NAME_1=253;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fpost-install.sh;0;4
 FILE_NAME_2=123;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Ftemplate;0;4
-FILE_NAME_3=6;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2F.gitignore;0;4
-FILE_NAME_4=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2F.ssh%2Fgitall.pub;0;4
+FILE_NAME_3=1;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2F.gitignore;0;4
 
 [VTE]
-last_dir=/home/zen/.ssh
+last_dir=/home/zen/Projects/dialog
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
