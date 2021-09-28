@@ -20,36 +20,22 @@ indent_mode=2
 [project]
 name=dialog
 base_path=/home/zen/Projects/dialog/
+description=
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
-FILE_NAME_0=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fdialog.geany;0;4
-FILE_NAME_1=0;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Ftest;0;4
-FILE_NAME_2=390;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fdialog-void-sh;0;4
-FILE_NAME_3=259;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fw;0;4
-FILE_NAME_4=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fbackup.tmp;0;4
-FILE_NAME_5=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fbasic.tmp;0;4
-FILE_NAME_6=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fbrowser.tmp;0;4
-FILE_NAME_7=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fde.tmp;0;4
-FILE_NAME_8=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Feditor.tmp;0;4
-FILE_NAME_9=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fgeditor.tmp;0;4
-FILE_NAME_10=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fmedia.tmp;0;4
-FILE_NAME_11=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fnet.tmp;0;4
-FILE_NAME_12=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Frepo.tmp;0;4
-FILE_NAME_13=1;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fshell.tmp;0;4
-FILE_NAME_14=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fterminal.tmp;0;4
-FILE_NAME_15=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fui.tmp;0;4
-FILE_NAME_16=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fvirt.tmp;0;4
-FILE_NAME_17=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fwm.tmp;0;4
-FILE_NAME_18=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fdm.tmp;0;4
-FILE_NAME_19=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Frepo3.tmp;0;4
+current_page=4
+FILE_NAME_0=28976;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fdialog-void-sh;0;4
+FILE_NAME_1=253;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Fpost-install.sh;0;4
+FILE_NAME_2=123;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2Ftemplate;0;4
+FILE_NAME_3=6;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2FProjects%2Fdialog%2F.gitignore;0;4
+FILE_NAME_4=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fzen%2F.ssh%2Fgitall.pub;0;4
 
 [VTE]
-last_dir=/home/zen/Projects/dialog
+last_dir=/home/zen/.ssh
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;

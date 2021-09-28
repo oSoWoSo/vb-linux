@@ -1,18 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 # Color definitions
 blue=$(tput setaf 4)
-black=$(tput setaf 0)
 green=$(tput setaf 2)
 white=$(tput setaf 7)
 red=$(tput setaf 1)
 none=$(tput sgr0)
-bb=$(tput setab 0)
-rb=$(tput setab 1)
-yb=$(tput setab 3)
 version="0.0.1"
 progname=${0##*/}
-echo $progname
+echo "$progname"
 echo $version
 echo "Source:"
 echo "https://codeberg.org/oSoWoSo"
@@ -20,9 +16,18 @@ echo "https://codeberg.org/oSoWoSo"
 # Delete old answers
 rm *.tmp
 
-## Asking part ## ------------------------------------------------------
 
-begin?
+if [ /bin/dialog ] ;then
+	echo -n "$green"
+	echo "dialog already installed. Continue..."
+	echo -n "$none"
+else
+	sudo xbps-install dialog
+fi
+echo begin?
+sleep 5
+
+## Ask part ## ---------------------------------------------------------
 
 # basic
 dialog --checklist "01 - Basic:" 0 0 0 \
@@ -608,7 +613,7 @@ if grep 'wm' ui.tmp ;then
 		term=aterm
 	fi
 
-	if grep 'cool-retro-ter'm terminal.tmp ;then
+	if grep 'cool-retro-term' terminal.tmp ;then
 		echo -n "$blue"
 		echo "Install cool-retro-term..."
 		echo -n "$none"
@@ -1217,7 +1222,7 @@ if grep 'passthrough' virt.tmp ;then
 	fi
 	OLD_OPTIONS=`cat new_grub | grep GRUB_CMDLINE_LINUX | cut -d '"' -f 1,2`
 	NEW_OPTIONS="$OLD_OPTIONS $IOMMU\""
-	echo $NEW_OPTIONS
+	echo "$NEW_OPTIONS"
 	sed -i -e "s|^GRUB_CMDLINE_LINUX.*|${NEW_OPTIONS}|" new_grub
 	EDITOR=$EDITOR
 	if [ -e /bin/nano ] ;then
@@ -1296,17 +1301,23 @@ if grep 'vbox-guest' virt.tmp ;then
 fi
 
 # backup
-if grep 'xxxx' backup.tmp ;then
+if grep 'borg' backup.tmp ;then
 	echo -n "$blue"
-	echo "Install xxxx..."
+	echo "Install borg..."
 	echo -n "$none"
-	sudo xbps-install xxxx
+	sudo xbps-install borg
 fi
 
-# template
-if grep 'xxxx' xx.tmp ;then
+if grep 'dejadup' backup.tmp ;then
 	echo -n "$blue"
-	echo "Install xxxx..."
+	echo "Install dejadup..."
 	echo -n "$none"
-	sudo xbps-install xxxx
+	sudo xbps-install dejadup
+fi
+
+if grep 'timeshift' backup.tmp ;then
+	echo -n "$blue"
+	echo "Install timeshift..."
+	echo -n "$none"
+	sudo xbps-install timeshift
 fi
