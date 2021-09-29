@@ -8,7 +8,7 @@ progname=${0##*/}
 echo "$progname"
 echo $version
 echo "Source:"
-echo "https://codeberg.org/oSoWoSo"
+echo "https://codeberg.org/oSoWoSo/dialog"
 
 # dialog colors
 BLACK="\Z0"
