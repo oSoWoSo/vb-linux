@@ -1,5 +1,6 @@
 #!/bin/bash
 # Color definitions
+
 green=$(tput setaf 2)
 red=$(tput setaf 1)
 none=$(tput sgr0)
@@ -10,6 +11,29 @@ echo $version
 echo "Source:"
 echo "https://codeberg.org/oSoWoSo"
 
+# dialog colors
+BLACK="\Z0"
+RED="\Z1"
+GREEN="\Z2"
+YELLOW="\Z3"
+BLUE="\Z4"
+MAGENTA="\Z5"
+CYAN="\Z6"
+WHITE="\Z7"
+BOLD="\Zb"
+REVERSE="\Zr"
+UNDERLINE="\Zu"
+RESET="\Zn"
+# Properties shared per widget.
+MENULABEL="${BOLD}Use UP and DOWN keys to navigate \
+menus. Use TAB to switch between buttons and ENTER to select.${RESET}"
+DIALOG() {
+    rm -f $ANSWER
+    dialog --colors --keep-tite --no-shadow --no-mouse \
+        --backtitle "${BOLD}${WHITE}Void Linux installation -- https://www.voidlinux.org (0.22 d14162a)${RESET}" \
+        --cancel-label "Back" --aspect 20 "$@" 2>$ANSWER
+    return $?
+}
 # begin
 if [ -f /bin/bash ]; then
 echo -e "\n${green}bash already installed...${none}\n"
@@ -36,37 +60,194 @@ fi
 if grep 'ask' begin.tmp ;then
 # mirors
 dialog --radiolist "Select mirror:" 0 0 0 \
-1 "https://ftp.swin.edu.au/voidlinux/" off \
-2 "https://mirrors.bfsu.edu.cn/voidlinux/" off \
-3 "https://mirrors.cnnic.cn/voidlinux/" off \
-4 "https://mirror.aarnet.edu.au/pub/voidlinux/" off \
-5 "https://mirror.sjtu.edu.cn/voidlinux/" off \
-6 "https://mirror.maakpain.kro.kr/void/" off \
-7 "https://void.webconverger.org/" off \
-8 "https://mirrors.tuna.tsinghua.edu.cn/voidlinux/" off \
-9 "https://alpha.us.repo.voidlinux.org/" off \
-10 "https://mirror.clarkson.edu/voidlinux/" off \
-11 "https://mirrors.servercentral.com/voidlinux/" off \
-12 "https://mirror.ps.kz/voidlinux/" off \
-13 "https://alpha.de.repo.voidlinux.org/" off \
-14 "https://ftp.sunet.se/mirror/voidlinux/" off \
-15 "https://voidlinux.qontinuum.space:4443/" off \
-16 "https://ftp.lysator.liu.se/pub/voidlinux/" off \
-17 "https://void.cijber.net/" off \
-18 "https://quantum-mirror.hu/mirrors/pub/voidlinux/" off \
-19 "https://cdimage.debian.org/mirror/voidlinux/" off \
-20 "https://ftp.acc.umu.se/mirror/voidlinux/" off \
-21 "https://mirrors.dotsrc.org/voidlinux/" off \
-22 "https://mirror.yandex.ru/mirrors/voidlinux/" off \
-23 "https://mirror.erickochen.nl/voidlinux/" off \
-24 "http://ftp.dk.xemacs.org/voidlinux/" off \
-25 "https://mirror.fit.cvut.cz/voidlinux/" off \
-26 "http://ftp.debian.ru/mirrors/voidlinux/" off 2> mirror.tmp
-sudo mkdir -p /etc/xbps.d
-sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
-sudo sed -i 's|https://alpha.de.repo.voidlinux.org|<repository>|g' /etc/xbps.d/*-repository-*.conf
-sudo xbps-install -S
-
+00 "Revert to default mirror" off \
+01 "https://ftp.swin.edu.au/voidlinux" off \
+02 "https://mirrors.bfsu.edu.cn/voidlinux" off \
+03 "https://mirrors.cnnic.cn/voidlinux" off \
+04 "https://mirror.aarnet.edu.au/pub/voidlinux" off \
+05 "https://mirror.sjtu.edu.cn/voidlinux" off \
+06 "https://mirror.maakpain.kro.kr/void" off \
+07 "https://void.webconverger.org" off \
+08 "https://mirrors.tuna.tsinghua.edu.cn/voidlinux" off \
+09 "https://alpha.us.repo.voidlinux.org" off \
+10 "https://mirror.clarkson.edu/voidlinux" off \
+11 "https://mirrors.servercentral.com/voidlinux" off \
+12 "https://mirror.ps.kz/voidlinux" off \
+13 "https://alpha.de.repo.voidlinux.org" off \
+14 "https://ftp.sunet.se/mirror/voidlinux" off \
+15 "https://voidlinux.qontinuum.space:4443" off \
+16 "https://ftp.lysator.liu.se/pub/voidlinux" off \
+17 "https://void.cijber.net" off \
+18 "https://quantum-mirror.hu/mirrors/pub/voidlinux" off \
+19 "https://cdimage.debian.org/mirror/voidlinux" off \
+20 "https://ftp.acc.umu.se/mirror/voidlinux" off \
+21 "https://mirrors.dotsrc.org/voidlinux" off \
+22 "https://mirror.yandex.ru/mirrors/voidlinux" off \
+23 "https://mirror.erickochen.nl/voidlinux" off \
+24 "http://ftp.dk.xemacs.org/voidlinux" off \
+25 "https://mirror.fit.cvut.cz/voidlinux" off \
+26 "http://ftp.debian.ru/mirrors/voidlinux" off 2> mirror.tmp
+	if grep '00' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo xbps-install -S
+	fi
+	if grep '01' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://ftp.swin.edu.au/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '02' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirrors.bfsu.edu.cn/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '03' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirrors.cnnic.cn/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '04' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirror.aarnet.edu.au/pub/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '05' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirror.sjtu.edu.cn/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '06' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirror.maakpain.kro.kr/void|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '07' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://void.webconverger.org|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '08' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirrors.tuna.tsinghua.edu.cn/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '09' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://alpha.us.repo.voidlinux.org|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '10' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirror.clarkson.edu/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '11' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirrors.servercentral.com/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '12' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirror.ps.kz/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '13' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://alpha.de.repo.voidlinux.org|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '14' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://ftp.sunet.se/mirror/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '15' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://voidlinux.qontinuum.space:4443|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '16' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://ftp.lysator.liu.se/pub/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '17' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://void.cijber.net|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '18' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://quantum-mirror.hu/mirrors/pub/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '19' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://cdimage.debian.org/mirror/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '20' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://ftp.acc.umu.se/mirror/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '21' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirrors.dotsrc.org/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '22' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirror.yandex.ru/mirrors/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '23' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirror.erickochen.nl/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '24' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|http://ftp.dk.xemacs.org/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '25' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|https://mirror.fit.cvut.cz/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
+	if grep '26' mirror.tmp ;then
+		sudo mkdir -p /etc/xbps.d
+		sudo cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+		sudo sed -i 's|https://alpha.de.repo.voidlinux.org|http://ftp.debian.ru/mirrors/voidlinux|g' /etc/xbps.d/*-repository-*.conf
+		sudo xbps-install -S
+	fi
 # basic
 	dialog --checklist "01 - Basic:" 0 0 0 \
 	update "update system" off \
