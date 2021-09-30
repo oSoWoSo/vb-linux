@@ -17,7 +17,7 @@ options=(
 	ask "Ask part" \
 	install "Install without ask again" \
 	remove "Remove .tmp files" \
-	exit "Quit $progname" )
+	exit "Quit $progname")
 selections=$("${begin[@]}" "${options[@]}" 2>&1 >/dev/tty)
 for selection in $selections
 do
@@ -30,6 +30,88 @@ install)
 	;;
 remove)
 	rm ./*tmp*
+	begin
+	;;
+exit)
+	exit
+	;;
+	esac
+done
+
+main=(dialog --backtitle 'universal void installer by oSoWoSo' --title uvi --no-shadow --menu "99 - Main" 0 0 0)
+options=(
+	mirrors "02 - Choose mirror" \
+	basic "03 - basic" \
+	repo "04 - non-free and repositories" \
+	ui "05 - Choose user interface" \
+	de "06 - Choose desktop environment" \
+	wm "07 - Choose windows manager" \
+	shell "08 - Choose shell" \
+	dm "09 - Choose display manager" \
+	terminal "10 - Choose terminal emulator" \
+	editor "11 - Choose console text editor" \
+	geditor "12 - Choose graphical text editor" \
+	browser "13 - Choose browser" \
+	media "14 - Choose media player" \
+	net "15 - Choose networking options" \
+	virt "16 - Choose virtualization options" \
+	backup "17 - Choose backup" \
+	misc "18 - Miscellaneous options" \
+	exit "Rather quit installer")
+selections=$("${main[@]}" "${options[@]}" 2>&1 >/dev/tty)
+for selection in $selections
+do
+case $selection in
+mirrors)
+	echo mirrors
+	;;
+basic)
+	echo mirrors
+	;;
+repo)
+	echo mirrors
+	;;
+ui)
+	echo mirrors
+	;;
+de)
+	echo mirrors
+	;;
+wm)
+	echo mirrors
+	;;
+shell)
+	echo mirrors
+	;;
+dm)
+	echo mirrors
+	;;
+terminal)
+	echo mirrors
+	;;
+editor)
+	echo mirrors
+	;;
+geditor)
+	echo mirrors
+	;;
+browser)
+	echo mirrors
+	;;
+media)
+	echo mirrors
+	;;
+net)
+	echo mirrors
+	;;
+virt)
+	echo mirrors
+	;;
+backup)
+	echo mirrors
+	;;
+misc)
+	echo mirrors
 	;;
 exit)
 	exit
@@ -1415,8 +1497,79 @@ for selection in $selections
 do
 	case $selection in
 xkeylang)
-	echo -e "\n${green}Nothing here yet...${none}\n"
-	sudo xbps-install xxxx
+	echo -e "\n${green}Change X keyboard language...${none}\n"
+	printf "Possible (type in number)or Enter for English: \n
+	- 1 Czech
+	- 2 Deutsch
+	- 3 French
+	- 4 Russian
+	- 5 Spanish\n"
+	echo -n "$green"
+	read -p "Which keyboard layout do you want? " xlanguage
+	echo -n "$none"
+	case $xlanguage in
+	1 )
+		if [ ! -d /etc/X11/xorg.conf.d ]; then
+			sudo mkdir -p /etc/X11/xorg.conf.d
+		fi
+		sed "s/"cs"/"cz"/" conf.keyboard > 00-keyboard.conf
+		sudo cp -r 00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+		sudo cp -r conf.touchpad /etc/X11/xorg.conf.d/20-touchpad.conf
+		echo -e "\n${green}Done${none}\n"
+		;;
+
+	2 )
+		if [ ! -d /etc/X11/xorg.conf.d ]; then
+			sudo mkdir -p /etc/X11/xorg.conf.d
+		fi
+		sed "s/"cs"/"de"/" conf.keyboard > 00-keyboard.conf
+		sudo cp -r 00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+		sudo cp -r conf.touchpad /etc/X11/xorg.conf.d/20-touchpad.conf
+		echo -e "\n${green}Done${none}\n"
+		;;
+
+	3 )
+		if [ ! -d /etc/X11/xorg.conf.d ]; then
+			sudo mkdir -p /etc/X11/xorg.conf.d
+		fi
+		sed "s/"cs"/"fr"/" conf.keyboard > 00-keyboard.conf
+		sudo cp -r 00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+		sudo cp -r conf.touchpad /etc/X11/xorg.conf.d/20-touchpad.conf
+		echo -e "\n${green}Done${none}\n"
+		;;
+
+	4 )
+		if [ ! -d /etc/X11/xorg.conf.d ]; then
+			sudo mkdir -p /etc/X11/xorg.conf.d
+		fi
+		sed "s/"cs"/"ru"/" conf.keyboard > 00-keyboard.conf
+		sudo cp -r 00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+		sudo cp -r conf.touchpad /etc/X11/xorg.conf.d/20-touchpad.conf
+		echo -e "\n${green}Done${none}\n"
+		;;
+
+
+	5 )
+		if [ ! -d /etc/X11/xorg.conf.d ]; then
+			sudo mkdir -p /etc/X11/xorg.conf.d
+		fi
+		sed "s/"cs"/"es"/" conf.keyboard > 00-keyboard.conf
+		sudo cp -r 00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+		sudo cp -r conf.touchpad /etc/X11/xorg.conf.d/20-touchpad.conf
+		echo -e "\n${green}Done${none}\n"
+		;;
+
+
+	* )
+		if [ ! -d /etc/X11/xorg.conf.d ]; then
+			sudo mkdir -p /etc/X11/xorg.conf.d
+		fi
+		sed "s/"cs"/"us"/" conf.keyboard > 00-keyboard.conf
+		sudo cp -r 00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+		sudo cp -r conf.touchpad /etc/X11/xorg.conf.d/20-touchpad.conf
+		echo -e "\n${green}Done${none}\n"
+		;;
+		esac
 	;;
 fonts)
 	echo -e "\n${green}Install some fonts...${none}\n"
