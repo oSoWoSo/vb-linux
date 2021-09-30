@@ -1,7 +1,0 @@
-# template
-if grep 'xxxx' xx.tmp ;then
-	echo -n "$blue"
-	echo "Install xxxx..."
-	echo -n "$none"
-	sudo xbps-install xxxx
-fi
