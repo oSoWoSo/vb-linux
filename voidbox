@@ -35,23 +35,23 @@ done
 
 main=(dialog --backtitle 'universal void installer by oSoWoSo' --title uvi --no-shadow --menu "99 - Main" 0 0 0)
 options=(
-	mirrors "02 - Choose mirror" \
-	basic "03 - basic" \
-	repo "04 - non-free and repositories" \
-	ui "05 - Choose user interface" \
-	de "06 - Choose desktop environment" \
-	wm "07 - Choose windows manager" \
-	shell "08 - Choose shell" \
-	dm "09 - Choose display manager" \
-	terminal "10 - Choose terminal emulator" \
-	editor "11 - Choose console text editor" \
-	geditor "12 - Choose graphical text editor" \
-	browser "13 - Choose browser" \
-	media "14 - Choose media player" \
-	net "15 - Choose networking options" \
-	virt "16 - Choose virtualization options" \
-	backup "17 - Choose backup" \
-	misc "18 - Miscellaneous options" \
+	mirrors "01 - Choose mirror" \
+	basic "02 - basic" \
+	repo "03 - non-free and repositories" \
+	ui "04 - Choose user interface" \
+	de "05 - Choose desktop environment" \
+	wm "06 - Choose windows manager" \
+	shell "07 - Choose shell" \
+	dm "08 - Choose display manager" \
+	terminal "09 - Choose terminal emulator" \
+	editor "10 - Choose console text editor" \
+	geditor "11 - Choose graphical text editor" \
+	browser "12 - Choose browser" \
+	media "13 - Choose media player" \
+	net "14 - Choose networking options" \
+	virt "15 - Choose virtualization options" \
+	backup "16 - Choose backup" \
+	misc "17 - Miscellaneous options" \
 	exit "Rather quit installer")
 selections=$("${main[@]}" "${options[@]}" 2>&1 >/dev/tty)
 for selection in $selections
@@ -61,52 +61,52 @@ mirrors)
 	echo mirrors
 	;;
 basic)
-	echo mirrors
+	echo basic
 	;;
 repo)
-	echo mirrors
+	echo repo
 	;;
 ui)
-	echo mirrors
+	echo ui
 	;;
 de)
-	echo mirrors
+	echo de
 	;;
 wm)
-	echo mirrors
+	echo wm
 	;;
 shell)
-	echo mirrors
+	echo shell
 	;;
 dm)
-	echo mirrors
+	echo dm
 	;;
 terminal)
-	echo mirrors
+	echo terminal
 	;;
 editor)
-	echo mirrors
+	echo editor
 	;;
 geditor)
-	echo mirrors
+	echo geditor
 	;;
 browser)
-	echo mirrors
+	echo browser
 	;;
 media)
-	echo mirrors
+	echo media
 	;;
 net)
-	echo mirrors
+	echo net
 	;;
 virt)
-	echo mirrors
+	echo virt
 	;;
 backup)
-	echo mirrors
+	echo backup
 	;;
 misc)
-	echo mirrors
+	echo misc
 	;;
 exit)
 	exit
