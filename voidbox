@@ -2,11 +2,6 @@
 #set -e
 green=$(tput setaf 2)
 none=$(tput sgr0)
-if [ -f /bin/bash ]; then
-	echo -e "\n${green}bash already installed...${none}\n"
-else
-	sudo xbps-install bash
-fi
 if [ -f /bin/dialog ]; then
 	echo -e "\n${green}dialog already installed...${none}\n"
 else
